@@ -127,13 +127,14 @@ export const useChat = (sessionId: string, tenure: number = 12) => {
   }, [sessionId]);
 
   // Send a system message (for upload notifications etc.)
+  // Note: we do not pre-add the user message here because `send` already
+  // adds the user message before posting to the server. Adding it twice would
+  // duplicate the "uploaded" text in the chat history.
   const sendSystemNotification = useCallback(
     (message: string) => {
-      addMessage("user", message);
-      // Trigger a send to let the bot know
       send(message);
     },
-    [addMessage, send]
+    [send]
   );
 
   return {

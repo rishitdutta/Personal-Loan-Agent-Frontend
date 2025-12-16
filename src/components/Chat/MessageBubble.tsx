@@ -9,7 +9,6 @@ import EligibilityCard from "./EligibilityCard";
 import LoanSummaryCard from "./LoanSummaryCard";
 import ApprovalCard from "./ApprovalCard";
 import RejectionCard from "./RejectionCard";
-import RejectionCard from "./RejectionCard";
 
 interface MessageBubbleProps {
   message: Message;
