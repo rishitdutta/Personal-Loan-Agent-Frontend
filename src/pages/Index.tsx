@@ -9,6 +9,7 @@ import QuickActions from "@/components/QuickActions";
 import JourneySidebar from "@/components/Sidebar/JourneySidebar";
 import EMICalculatorDialog from "@/components/Chat/EMICalculatorDialog";
 import UploadDialog from "@/components/Upload/UploadDialog";
+import SupportDialog from "@/components/Dialogs/SupportDialog";
 import { Button } from "@/components/ui/button";
 import LandingView from "@/components/Landing/LandingView";
 import AdminLoginDialog from "@/components/Landing/AdminLoginDialog";
@@ -30,6 +31,7 @@ const Index = () => {
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [showEMICalculator, setShowEMICalculator] = useState(false);
   const [showUploadDialog, setShowUploadDialog] = useState(false);
+  const [showSupportDialog, setShowSupportDialog] = useState(false);
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPass, setAdminPass] = useState("");
   const [isServerOnline, setIsServerOnline] = useState<boolean | null>(null);
@@ -249,7 +251,7 @@ const Index = () => {
             canDownloadSanction={journey.canDownloadSanction}
             salarySlipUploaded={journey.steps.find(s => s.key === 'docs')?.status === 'done'}
             onExit={() => setShowLanding(true)}
-            onSupport={() => send("I need help from support")}
+            onSupport={() => setShowSupportDialog(true)}
           />
         </div>
       </div>
@@ -270,6 +272,12 @@ const Index = () => {
           }
         }}
         onUploadComplete={handleSalarySlipUploaded}
+      />
+
+      {/* Support Dialog */}
+      <SupportDialog
+        open={showSupportDialog}
+        onOpenChange={setShowSupportDialog}
       />
     </div>
   );
