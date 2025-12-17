@@ -58,16 +58,6 @@ export const useChat = (sessionId: string, tenure: number = 12) => {
     }
   }, [messages, sessionId]);
 
-  // Clear stored messages when session changes
-  useEffect(() => {
-    const stored = localStorage.getItem(`${STORAGE_KEY}_${sessionId}`);
-    if (stored) {
-      setMessages(deserializeMessages(stored));
-    } else {
-      setMessages([]);
-    }
-  }, [sessionId]);
-
   const addMessage = useCallback(
     (role: "user" | "assistant", content: string) => {
       const newMessage: Message = {
